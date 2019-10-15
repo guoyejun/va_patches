@@ -1,0 +1,70 @@
+From 70f497010b844c390282b36f8a54eef018f1dc62 Mon Sep 17 00:00:00 2001
+From: "Guo, Yejun" <yejun.guo@intel.com>
+Date: Wed, 18 Sep 2019 15:35:54 +0800
+Subject: [PATCH] fix for build
+
+Signed-off-by: Guo, Yejun <yejun.guo@intel.com>
+---
+ inference-engine/include/ie_api_wrapper.h        | 6 +++---
+ inference-engine/include/ie_common_wrapper.h     | 6 +++---
+ inference-engine/src/ie_c_wrapper/ie_context.cpp | 2 ++
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/inference-engine/include/ie_api_wrapper.h b/inference-engine/include/ie_api_wrapper.h
+index 9c178f5..02b8649 100644
+--- a/inference-engine/include/ie_api_wrapper.h
++++ b/inference-engine/include/ie_api_wrapper.h
+@@ -2,8 +2,8 @@
+ // SPDX-License-Identifier: Apache-2.0
+ //
+ 
+-#ifndef OPENVINO_DLDT_INFERENCE_ENGINE_INCLUDE_IE_API_WRAPPER_H_
+-#define OPENVINO_DLDT_INFERENCE_ENGINE_INCLUDE_IE_API_WRAPPER_H_
++#ifndef INFERENCE_ENGINE_INCLUDE_IE_API_WRAPPER_H_
++#define INFERENCE_ENGINE_INCLUDE_IE_API_WRAPPER_H_
+ 
+ #include "ie_common_wrapper.h"
+ 
+@@ -128,4 +128,4 @@ void IESetCpuThreadsNum(void *contextPtr, unsigned int num);
+ #ifdef __cplusplus
+ }
+ #endif
+-#endif  // OPENVINO_DLDT_INFERENCE_ENGINE_INCLUDE_IE_API_WRAPPER_H_
++#endif  // INFERENCE_ENGINE_INCLUDE_IE_API_WRAPPER_H_
+diff --git a/inference-engine/include/ie_common_wrapper.h b/inference-engine/include/ie_common_wrapper.h
+index e82b65f..1bce779 100644
+--- a/inference-engine/include/ie_common_wrapper.h
++++ b/inference-engine/include/ie_common_wrapper.h
+@@ -2,8 +2,8 @@
+ // SPDX-License-Identifier: Apache-2.0
+ //
+ 
+-#ifndef OPENVINO_DLDT_INFERENCE_ENGINE_INCLUDE_IE_COMMON_WRAPPER_H_
+-#define OPENVINO_DLDT_INFERENCE_ENGINE_INCLUDE_IE_COMMON_WRAPPER_H_
++#ifndef INFERENCE_ENGINE_INCLUDE_IE_COMMON_WRAPPER_H_
++#define INFERENCE_ENGINE_INCLUDE_IE_COMMON_WRAPPER_H_
+ 
+ #include <stddef.h>
+ 
+@@ -192,4 +192,4 @@ typedef struct tagIEConfig {
+ #ifdef __cplusplus
+ }
+ #endif
+-#endif  // OPENVINO_DLDT_INFERENCE_ENGINE_INCLUDE_IE_COMMON_WRAPPER_H_
++#endif  // INFERENCE_ENGINE_INCLUDE_IE_COMMON_WRAPPER_H_
+diff --git a/inference-engine/src/ie_c_wrapper/ie_context.cpp b/inference-engine/src/ie_c_wrapper/ie_context.cpp
+index ba75cba..d3ba2d5 100644
+--- a/inference-engine/src/ie_c_wrapper/ie_context.cpp
++++ b/inference-engine/src/ie_c_wrapper/ie_context.cpp
+@@ -20,6 +20,8 @@
+ 
+ using namespace std;
+ 
++IE_SUPPRESS_DEPRECATED_START
++
+ namespace InferenceEngine {
+ 
+ CIEContext::CIEContext()
+-- 
+2.7.4
+
